@@ -1,5 +1,7 @@
 package org.example.dto;
 
+import java.util.Objects;
+
 public class RequestDTO {
 
     private String email;
@@ -39,6 +41,18 @@ public class RequestDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestDTO that = (RequestDTO) o;
+        return Objects.equals(email, that.email) && Objects.equals(name, that.name) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, name, password);
     }
 
     @Override

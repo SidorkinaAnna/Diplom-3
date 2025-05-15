@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+
 import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class SectionTest extends BaseTest {
@@ -28,6 +29,6 @@ public class SectionTest extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.clickSection(name);
         assertTrue(mainPage.sectionIsVisibleCheck(name));
-
+        assertTrue(mainPage.sectionTitleIsSelected(name));
     }
 }

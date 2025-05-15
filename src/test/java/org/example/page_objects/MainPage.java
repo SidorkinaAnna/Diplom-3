@@ -8,7 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.assertFalse;
+import java.util.Objects;
+
 import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -22,6 +23,7 @@ public class MainPage {
     private By loginButton = By.xpath("//button[text()=\"Войти в аккаунт\"]");
     private String buttonSectionSelector = "//span[text() = '%s']";
     private String titleSectionSelector = "//h2[text() = '%s']";
+    private By currentSectionTitle = By.xpath("//div[contains(@class, 'tab_tab_type_current')]//span");
 
 
 
@@ -63,6 +65,12 @@ public class MainPage {
         String selector = String.format(buttonSectionSelector, name);
         WebElement element = driver.findElement(By.xpath(selector));
         new Actions(driver).moveToElement(element).click().perform();
+    }
+
+    @Step("Проверяем, что кнопка выбора секции {sectionName} выбрана")
+    public boolean sectionTitleIsSelected(String sectionName) {
+        new WebDriverWait(driver, 3).until(ExpectedConditions.textToBe(currentSectionTitle, sectionName));
+        return Objects.equals(driver.findElement(currentSectionTitle).getText(), sectionName);
     }
 
     @Step("Проверяем, что видна секция - {sectionName}")

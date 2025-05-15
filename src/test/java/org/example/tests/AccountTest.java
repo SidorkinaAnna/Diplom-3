@@ -1,13 +1,11 @@
 package org.example.tests;
 
-import org.example.helpers.LocalStorage;
 import io.restassured.response.Response;
 import org.example.dto.RequestDTO;
 import org.example.page_objects.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.example.steps.ApiSteps;
 
