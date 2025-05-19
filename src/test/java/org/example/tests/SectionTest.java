@@ -11,24 +11,27 @@ import java.util.Collection;
 import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class SectionTest extends BaseTest {
-    private final String name;
+    private final String nameFrom;
+    private final String nameTo;
 
-    public SectionTest(String name) {
-        this.name = name;
+    public SectionTest(String nameFrom, String nameTo) {
+        this.nameFrom = nameFrom;
+        this.nameTo = nameTo;
     }
 
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{{"Булки"}, {"Соусы"}, {"Начинки"}});
+        return Arrays.asList(new Object[][]{{"Начинки", "Соусы"}, {"Соусы", "Начинки"}, {"Начинки", "Булки"}});
     }
 
     @Test
     public void transitionSection() {
         driver.get("https://stellarburgers.nomoreparties.site/");
         MainPage mainPage = new MainPage(driver);
-        mainPage.clickSection(name);
-        assertTrue(mainPage.sectionIsVisibleCheck(name));
-        assertTrue(mainPage.sectionTitleIsSelected(name));
+        mainPage.clickSection(nameFrom);
+        mainPage.clickSection(nameTo);
+        assertTrue(mainPage.sectionIsVisibleCheck(nameTo));
+        assertTrue(mainPage.sectionTitleIsSelected(nameTo));
     }
 }

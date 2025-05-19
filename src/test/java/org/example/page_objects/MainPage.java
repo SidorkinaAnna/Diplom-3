@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -64,7 +63,7 @@ public class MainPage {
     public void clickSection(String name) {
         String selector = String.format(buttonSectionSelector, name);
         WebElement element = driver.findElement(By.xpath(selector));
-        new Actions(driver).moveToElement(element).click().perform();
+        element.click();
     }
 
     @Step("Проверяем, что кнопка выбора секции {sectionName} выбрана")
